@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import logo from "@/assets/ecu-logo.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { org } from "@/lib/ecu";
 
@@ -13,7 +14,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
         <div>
           <div className="flex items-center gap-3">
-            <span className="grid h-14 w-14 place-items-center rounded-full bg-accent font-display text-xl font-bold text-accent-foreground">ECU</span>
+            <img src={logo.url} alt="Education Connect Uganda logo" className="h-20 w-auto" />
             <span className="font-display text-xl font-semibold">{org.name}</span>
           </div>
           <p className="mt-4 text-sm text-primary-foreground/75">Transforming communities through education in West Nile since {org.founded}.</p>

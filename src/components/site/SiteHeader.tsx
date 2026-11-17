@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import logo from "@/assets/ecu-logo.png.asset.json";
 import { Button } from "@/components/ui/button";
 
 const links = [
@@ -18,7 +19,7 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-primary-foreground/10 bg-primary/70 backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-3">
-          <span className="grid h-12 w-12 place-items-center rounded-full bg-accent font-display text-lg font-bold text-accent-foreground">ECU</span>
+          <img src={logo.url} alt="Education Connect Uganda logo" className="h-16 w-auto" />
           <span className="font-display text-lg font-semibold leading-tight text-primary-foreground">Education Connect<br className="hidden sm:block" /> Uganda</span>
         </Link>
         <nav className="hidden items-center gap-6 lg:flex">
