@@ -32,7 +32,7 @@ function About() {
       </section>
       <section className="bg-muted py-20"><div className="mx-auto max-w-7xl px-4">
         <SectionTitle title="Our Core Values" />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{values.map((v, k) => { const I = icons[k]; return <div key={v.title} className="rounded-2xl bg-card p-6"><I className="h-9 w-9 text-primary" /><h3 className="mt-4 font-display text-xl font-semibold">{v.title}</h3><p className="mt-2 text-sm text-muted-foreground">{v.text}</p></div>; })}</div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{values.map((v, k) => { const I = icons[k] ?? HandHeart; return <div key={v.title} className="rounded-2xl bg-card p-6"><I className="h-9 w-9 text-primary" /><h3 className="mt-4 font-display text-xl font-semibold">{v.title}</h3><p className="mt-2 text-sm text-muted-foreground">{v.text}</p></div>; })}</div>
       </div></section>
       <section className="bg-primary py-20 text-primary-foreground"><div className="mx-auto max-w-7xl px-4">
         <h2 className="text-center font-display text-4xl font-semibold">Strategic Goals 2022–2026</h2>
