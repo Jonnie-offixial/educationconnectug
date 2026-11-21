@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Site content (programs, projects, reports, posts) lives in Lovable Cloud tables; public pages read them with the browser client and fall back to bundled images. Why: the admin dashboard edits them without code changes.
+- Admin writes are gated by RLS via `has_role(auth.uid(),'admin')`; the first account to sign up is made admin by a trigger. Why: single-owner NGO site with no admin bootstrap UI.
+- Uploaded files go to the private `media` bucket and are shared via long-lived signed URLs, because the workspace blocks public buckets.

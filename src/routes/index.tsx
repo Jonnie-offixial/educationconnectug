@@ -4,7 +4,9 @@ import { Download, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Counter } from "@/components/site/Counter";
 import { SectionTitle } from "@/components/site/PageHero";
-import { images, stats, programs, stories, partners, latestReports } from "@/lib/ecu";
+import { useQuery } from "@tanstack/react-query";
+import { images, stats, stories, partners } from "@/lib/ecu";
+import { programsQuery, reportsQuery, fallbackImg } from "@/lib/content";
 import { pageHead } from "@/lib/head";
 
 export const Route = createFileRoute("/")({
@@ -16,6 +18,8 @@ const slides = [images.hero, images.community, images.girls, images.sports];
 
 function Home() {
   const [i, setI] = useState(0);
+  const { data: programs = [] } = useQuery(programsQuery);
+  const { data: latestReports = [] } = useQuery(reportsQuery);
   useEffect(() => { const t = setInterval(() => setI((x) => (x + 1) % slides.length), 5000); return () => clearInterval(t); }, []);
   return (
     <>
@@ -57,9 +61,9 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4">
           <SectionTitle eyebrow="What We Do" title="Our Programs" text="Comprehensive initiatives addressing education, health, rights, and community wellbeing across West Nile, Uganda." />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {programs.filter((p) => ["education", "health", "gender", "disability", "peace", "youth"].includes(p.slug)).map((p) => (
-              <div key={p.slug} className="group overflow-hidden rounded-2xl bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <img src={p.img} alt={p.title} loading="lazy" className="h-48 w-full object-cover transition duration-500 group-hover:scale-105" />
+            {programs.slice(0, 6).map((p, k) => (
+              <div key={p.id} className="group overflow-hidden rounded-2xl bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <img src={p.image_url || fallbackImg(k)} alt={p.title} loading="lazy" className="h-48 w-full object-cover transition duration-500 group-hover:scale-105" />
                 <div className="p-6"><h3 className="font-display text-xl font-semibold">{p.title}</h3><p className="mt-2 text-sm text-muted-foreground">{p.summary}</p><Link to="/programs" className="mt-4 inline-block text-sm font-semibold text-primary">Learn more →</Link></div>
               </div>
             ))}
@@ -102,8 +106,8 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 py-20">
         <div className="mb-8 flex items-end justify-between"><div><p className="text-sm font-semibold uppercase tracking-widest text-accent">Transparency</p><h2 className="font-display text-4xl font-semibold">Latest Reports</h2></div><Link to="/projects" className="text-sm font-semibold text-primary">View all projects →</Link></div>
         <div className="grid gap-6 md:grid-cols-3">
-          {latestReports.map((r) => (
-            <div key={r.title} className="rounded-2xl border bg-card p-6"><span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{r.type}</span><h3 className="mt-4 font-display text-xl font-semibold">{r.title}</h3><p className="text-sm text-muted-foreground">{r.date}</p><Button variant="outline" size="sm" className="mt-5"><Download className="mr-2 h-4 w-4" />Download</Button></div>
+          {latestReports.slice(0, 3).map((r) => (
+            <div key={r.id} className="rounded-2xl border bg-card p-6"><span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{r.category}</span><h3 className="mt-4 font-display text-xl font-semibold">{r.title}</h3><p className="text-sm text-muted-foreground">{r.report_date}</p>{r.file_url ? <Button asChild variant="outline" size="sm" className="mt-5"><a href={r.file_url} target="_blank" rel="noreferrer"><Download className="mr-2 h-4 w-4" />Download</a></Button> : <p className="mt-5 text-xs text-muted-foreground">Download coming soon</p>}</div>
           ))}
         </div>
       </section>

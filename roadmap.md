@@ -1,1 +1,5 @@
-- [ ] Rebuild ECU site to match uploaded Readdy HTML files
+- [x] Rebuild ECU site to match uploaded Readdy HTML files
+- [x] Admin dashboard: programs, projects, reports, blog & stories
+- [ ] Roles beyond admin (Editor, Viewer) — needs user confirmation
+- [ ] M&E tool (indicators, targets, results, beneficiaries, activities, approvals) — large; scope to confirm with user
+- [ ] Git pull of external repo — not possible from here (Lovable sync only pulls from its own connected repo)

@@ -19,7 +19,7 @@ export const Route = createFileRoute("/_authenticated/admin")({
 
 type Field = { key: string; label: string; type: "text" | "textarea" | "number" | "image" | "file" | "select" | "checkbox"; options?: { value: string; label: string }[] };
 type Table = "programs" | "projects" | "reports" | "posts";
-type Row = Record<string, unknown> & { id?: string };
+type Row = Record<string, unknown> & { id?: string; image_url?: unknown; file_url?: unknown };
 
 const postCats = ["Latest News", "Field Reports", "Impact Stories"].map((v) => ({ value: v, label: v }));
 const reportCats = ["Annual", "Project", "Research", "Evaluation"].map((v) => ({ value: v, label: v }));

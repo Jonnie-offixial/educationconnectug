@@ -23,7 +23,7 @@ export function SiteFooter() {
         <div>
           <h4 className="font-display text-lg">Explore</h4>
           <ul className="mt-3 space-y-2 text-sm text-primary-foreground/80">
-            <li><Link to="/about">About</Link></li><li><Link to="/programs">Programs</Link></li><li><Link to="/projects">Projects & Reports</Link></li><li><Link to="/blog">Blog & Stories</Link></li><li><Link to="/volunteer">Volunteer</Link></li><li><Link to="/donate">Donate</Link></li>
+            <li><Link to="/about">About</Link></li><li><Link to="/programs">Programs</Link></li><li><Link to="/projects">Projects & Reports</Link></li><li><Link to="/blog">Blog & Stories</Link></li><li><Link to="/volunteer">Volunteer</Link></li><li><Link to="/donate">Donate</Link></li><li><Link to="/admin">Admin</Link></li>
           </ul>
         </div>
         <div>
