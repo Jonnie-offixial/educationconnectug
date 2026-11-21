@@ -14,6 +14,220 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_logs: {
+        Row: {
+          action: string
+          actor_email: string | null
+          actor_id: string | null
+          created_at: string
+          id: string
+          record_id: string | null
+          summary: string
+          table_name: string
+        }
+        Insert: {
+          action: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          record_id?: string | null
+          summary?: string
+          table_name: string
+        }
+        Update: {
+          action?: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          record_id?: string | null
+          summary?: string
+          table_name?: string
+        }
+        Relationships: []
+      }
+      beneficiaries: {
+        Row: {
+          age: number | null
+          community: string
+          created_at: string
+          district: string
+          full_name: string
+          gender: string
+          id: string
+          notes: string
+          project_id: string | null
+        }
+        Insert: {
+          age?: number | null
+          community?: string
+          created_at?: string
+          district?: string
+          full_name: string
+          gender?: string
+          id?: string
+          notes?: string
+          project_id?: string | null
+        }
+        Update: {
+          age?: number | null
+          community?: string
+          created_at?: string
+          district?: string
+          full_name?: string
+          gender?: string
+          id?: string
+          notes?: string
+          project_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "beneficiaries_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      donations: {
+        Row: {
+          amount: string
+          created_at: string
+          donation_type: string
+          donor_name: string
+          email: string
+          id: string
+          message: string
+          receipt_sent: boolean
+          status: string
+        }
+        Insert: {
+          amount?: string
+          created_at?: string
+          donation_type?: string
+          donor_name: string
+          email: string
+          id?: string
+          message?: string
+          receipt_sent?: boolean
+          status?: string
+        }
+        Update: {
+          amount?: string
+          created_at?: string
+          donation_type?: string
+          donor_name?: string
+          email?: string
+          id?: string
+          message?: string
+          receipt_sent?: boolean
+          status?: string
+        }
+        Relationships: []
+      }
+      me_records: {
+        Row: {
+          activities_completed: number
+          activities_planned: number
+          actual_female: number
+          actual_male: number
+          budget: number
+          community: string
+          created_at: string
+          district: string
+          evidence_url: string | null
+          expenditure: number
+          id: string
+          indicator: string
+          objective: string
+          outcome: string
+          period: string
+          planned_beneficiaries: number
+          project_id: string | null
+          status: string
+        }
+        Insert: {
+          activities_completed?: number
+          activities_planned?: number
+          actual_female?: number
+          actual_male?: number
+          budget?: number
+          community?: string
+          created_at?: string
+          district?: string
+          evidence_url?: string | null
+          expenditure?: number
+          id?: string
+          indicator?: string
+          objective?: string
+          outcome?: string
+          period?: string
+          planned_beneficiaries?: number
+          project_id?: string | null
+          status?: string
+        }
+        Update: {
+          activities_completed?: number
+          activities_planned?: number
+          actual_female?: number
+          actual_male?: number
+          budget?: number
+          community?: string
+          created_at?: string
+          district?: string
+          evidence_url?: string | null
+          expenditure?: number
+          id?: string
+          indicator?: string
+          objective?: string
+          outcome?: string
+          period?: string
+          planned_beneficiaries?: number
+          project_id?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "me_records_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          status: string
+          subject: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          status?: string
+          subject?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          status?: string
+          subject?: string
+        }
+        Relationships: []
+      }
       posts: {
         Row: {
           author: string
@@ -148,6 +362,63 @@ export type Database = {
           },
         ]
       }
+      settings: {
+        Row: {
+          address: string
+          email: string
+          facebook: string
+          id: number
+          instagram: string
+          linkedin: string
+          org_name: string
+          phone: string
+          twitter: string
+        }
+        Insert: {
+          address?: string
+          email?: string
+          facebook?: string
+          id?: number
+          instagram?: string
+          linkedin?: string
+          org_name?: string
+          phone?: string
+          twitter?: string
+        }
+        Update: {
+          address?: string
+          email?: string
+          facebook?: string
+          id?: number
+          instagram?: string
+          linkedin?: string
+          org_name?: string
+          phone?: string
+          twitter?: string
+        }
+        Relationships: []
+      }
+      subscribers: {
+        Row: {
+          active: boolean
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -166,17 +437,75 @@ export type Database = {
         }
         Relationships: []
       }
+      volunteers: {
+        Row: {
+          availability: string
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          location: string
+          motivation: string
+          phone: string
+          skills: string[]
+          status: string
+        }
+        Insert: {
+          availability?: string
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          location?: string
+          motivation?: string
+          phone?: string
+          skills?: string[]
+          status?: string
+        }
+        Update: {
+          availability?: string
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          location?: string
+          motivation?: string
+          phone?: string
+          skills?: string[]
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      grant_role: {
+        Args: { _email: string; _role: Database["public"]["Enums"]["app_role"] }
+        Returns: undefined
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      list_admins: {
+        Args: never
+        Returns: {
+          email: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }[]
+      }
+      revoke_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: undefined
       }
     }
     Enums: {
