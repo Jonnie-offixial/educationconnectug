@@ -3,7 +3,6 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import logo from "@/assets/ecu-logo.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { org } from "@/lib/ecu";
 
@@ -14,8 +13,11 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
         <div>
           <div className="flex items-center gap-3">
-            <img src={logo.url} alt="Education Connect Uganda logo" className="h-20 w-auto" />
-            <span className="font-display text-xl font-semibold">{org.name}</span>
+            <img
+              src="/images/Education%20Connect%20Uganda%20Emblem.png"
+              alt="Education Connect Uganda"
+              className="h-16 w-auto max-w-full object-contain"
+            />
           </div>
           <p className="mt-4 text-sm text-primary-foreground/75">Transforming communities through education in West Nile since {org.founded}.</p>
           <div className="mt-4 flex gap-3">{[Facebook, Twitter, Instagram, Linkedin].map((I, i) => <a key={i} href="#" aria-label="Social link" className="rounded-full bg-primary-foreground/10 p-2 hover:bg-accent"><I className="h-4 w-4" /></a>)}</div>
